@@ -8,15 +8,6 @@
 #include "map.coordinate_t.coordinate_t.h"
 #include "list.coordinate_t.h"
 
-void path_print(path_t* path) {
-    coordinate_t* it = path_begin(path);
-    coordinate_t* end = path_end(path);
-    while(it != end) {
-        printf("{%lu, %lu}\n", it->row, it->col);
-        ++it;
-    }
-}
-
 map_coordinate_double_t g_score; // cost pose->(x,y)
 map_coordinate_double_t f_score; // estimated cost pose->(x,y)->goal
 map_coordinate_coordinate_t came_from;
@@ -26,12 +17,12 @@ static int f_score_lowest_cost(const coordinate_t* a, const coordinate_t* b) {
     return map_coordinate_double_find(&f_score, *a) > map_coordinate_double_find(&f_score, *b);
 }
 
-path_t astar_get_path(
+path_t astar_T_get_path(
     grid_T_t* grid,
     coordinate_t begin_coordinate,
     coordinate_t end_coordinate,
-    int(*is_traversable)(T *)
-) {
+    int(*is_traversable)(const T *))
+{
 	path_t path;
     path_init(&path, 10);
     assert(

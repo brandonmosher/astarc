@@ -1,6 +1,6 @@
-#include <stdint.h>
-#include <inttypes.h>
 #include "astar.uint8_t.h"
+
+#include <inttypes.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdio.h>
@@ -40,7 +40,7 @@ void grid_uint8_fill_random(grid_uint8_t* grid) {
     }
 }
 
-int is_traversable(uint8_t* val) {
+int is_traversable(const uint8_t* val) {
     return *val == 0 ? 1 : 0;
 }
 
@@ -61,7 +61,7 @@ int main () {
         coordinate_t end = {3, 3};
         print_begin_end(&begin, &end);
 
-        path_t path = astar_get_path(&grid, begin, end, is_traversable);
+        path_t path = astar_uint8_get_path(&grid, begin, end, is_traversable);
         
         if(path_empty(&path)) {
             printf("No path found!\n");
@@ -86,7 +86,7 @@ int main () {
         coordinate_t end = {8, 8};
         print_begin_end(&begin, &end);
 
-        path_t path = astar_get_path(&grid, begin, end, is_traversable);
+        path_t path = astar_uint8_get_path(&grid, begin, end, is_traversable);
 
         if(path_empty(&path)) {
             printf("No path found!\n");
@@ -110,7 +110,7 @@ int main () {
         coordinate_t end = {3, 0};
         print_begin_end(&begin, &end);
 
-        path_t path = astar_get_path(&grid, begin, end, is_traversable);
+        path_t path = astar_uint8_get_path(&grid, begin, end, is_traversable);
 
         if(path_empty(&path)) {
             printf("No path found!\n");
