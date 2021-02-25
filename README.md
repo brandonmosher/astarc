@@ -17,7 +17,7 @@ A path is an ordered list of coordinates.
 
 This implementation requires the user to specify the grid value type. This is done by inserting the desired type into the include directive. For example, to use a grid of uint8_t, insert the following:
 
-#include "astar.uint8_t.h"
+    #include "astar.uint8_t.h"
 
 This allows the user to represent arbitrarily complex information about each grid location. For example, the following struct could be used to represent multiple properties of the grid location.
 
@@ -76,16 +76,23 @@ gcc -I include -lm include/*.c app/*.c
 
 # Pyctemp Template Instantiation
 
-This implementation is templated to support arbitrary grid values. pyctemp is used to instantiate the required templates during the build process. Pyctemp generates the following files:
+This implementation is templated to support arbitrary grid values. pyctemp is used to instantiate the required templates during the build process.
 
-grid.T.h grid.T.c
+## Generated Files
+
+### grid.T.h grid.T.c
+
 T is the user-specified grid value type. Provides methods to manipulate a grid.
 
-path_t.h path_t.c
+### path_t.h path_t.c
+
 This is simply the pyctemp built-in array.T.t template with T=coordinate_t, and alias=path_t Provides numerous methods to manipulate a path.
 
-astar.T.h astar.T.c
+### astar.T.h astar.T.c
+
 T is the user-specified grid value type. Provides astar_T_get_path method.
+
+### misc..
 
 Additional boilerplate for map, linked list, array and pair used for the astar algorithm.
 
