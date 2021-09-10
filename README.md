@@ -25,7 +25,6 @@ This allows the user to represent arbitrarily complex information about each gri
 typedef struct  {
     double elevation;
     double angle_of_elevation;
-    ...
 } terrain_t
 
 #include "astar.terrain_t.h"

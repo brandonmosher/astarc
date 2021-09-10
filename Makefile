@@ -1,3 +1,5 @@
+BIN=astar_terrain_t
+
 .PHONY: all install template compile run clean
 
 all: template compile run
@@ -8,14 +10,15 @@ install:
 	./install_pyctemp.sh
 
 template:
-	pyctemp --source-dirpath app --target-dirpath include --typedef-include uint8_t:inttypes.h
+	pyctemp --source-dirpath app/${BIN} --target-dirpath include --include-dirpath app --typedef-include-filepath uint8_t:inttypes.h
 
 compile:
 	@mkdir -p bin
-	gcc -ggdb -Wall -Wextra -pedantic -I include include/*.c app/*.c -o bin/path_main -lm
+	echo "app/${BIN}/*"
+	gcc -ggdb -Wall -Wextra -pedantic -I include -I app/${BIN} app/${BIN}/* include/*.c -o bin/${BIN} -lm
 
 run:
-	./bin/path_main
+	./bin/${BIN}
 
 clean:
 	rm -rf bin
